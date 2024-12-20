@@ -39,14 +39,15 @@
 
 cpsr 是ARM体系结构中的程序状态寄存器，其结构如下：
 
-M[4:0] | CPU模式 | 可访问寄存器| 说明
-0b10000 | User | pc,R14~R0,CPSR | 正常ARM程序执行状态
-0b10001| FIQ | PC,R14_FIQ-R8_FIQ,R7~R0,CPSR,SPSR_FIQ | 为支持数据传输或通道处理设计
-0b10010| IRQ | PC,R14_IRQ-R13_IRQ,R12~R0,CPSR,SPSR_IRQ | 用于一般用途的中断处理
-0b10011 | SUPERVISOR | PC,R14_SVC-R13_SVC,R12~R0,CPSR,SPSR_SVC | 操作系统保护模式
-0b10111 | ABORT | PC,R14_ABT-R13_ABT,R12~R0,CPSR,SPSR_ABT | 数据或指令预取中止后进入
-0b11011 | UNDEFINED | PC,R14_UND-R8_UND,R12~R0,CPSR,SPSR_UND | 执行未定义指令时进入
-0b11111	 | SYSTEM | PC,R14-R0,CPSR(ARM V4以及更高版本） | 操作系统的特权用户模式
+|M[4:0] | CPU模式 | 可访问寄存器| 说明|
+|-----------|----------|---------|--------|
+|0b10000 | User | pc,R14~R0,CPSR | 正常ARM程序执行状态|
+|0b10001| FIQ | PC,R14_FIQ-R8_FIQ,R7~R0,CPSR,SPSR_FIQ | 为支持数据传输或通道处理设计|
+|0b10010| IRQ | PC,R14_IRQ-R13_IRQ,R12~R0,CPSR,SPSR_IRQ | 用于一般用途的中断处理|
+|0b10011 | SUPERVISOR | PC,R14_SVC-R13_SVC,R12~R0,CPSR,SPSR_SVC | 操作系统保护模式|
+|0b10111 | ABORT | PC,R14_ABT-R13_ABT,R12~R0,CPSR,SPSR_ABT | 数据或指令预取中止后进入|
+|0b11011 | UNDEFINED | PC,R14_UND-R8_UND,R12~R0,CPSR,SPSR_UND | 执行未定义指令时进入|
+|0b1111| SYSTEM | PC,R14-R0,CPSR(ARM V4以及更高版本） | 操作系统的特权用户模式|
 
 > I、F、T三位如果写1即禁用，所以reset后面的4句操作的结果为设置CPU为SUPERVISOR模式且禁用中断。那为什么选择这个模式呢？
 > 首先，可以排除的就是ABORT和UNDEFINED模式，看上去就不像正常模式。
